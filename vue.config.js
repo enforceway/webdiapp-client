@@ -6,6 +6,7 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin"); // 引入插件
 // }
 module.exports = {
   lintOnSave: false,
+  publicPath: './',
   configureWebpack: {
     resolve: {
       alias: {
@@ -18,11 +19,10 @@ module.exports = {
       minimizer: [
         new UglifyJsPlugin({
           uglifyOptions: {
-            compress: {
               warnings: false,
-              drop_console: true,//consoledrop_debugger:false,
-              pure_funcs: ["console.log"]//移除console           
-            }
+              compress: {
+                  pure_funcs: ['console.log','console.debug']//移除console
+              }
           }
         })
       ]
