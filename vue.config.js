@@ -5,6 +5,7 @@ const UglifyJsPlugin = require("uglifyjs-webpack-plugin"); // 引入插件
 //   return path.join(__dirname, dir);
 // }
 module.exports = {
+  lintOnSave: false,
   configureWebpack: {
     resolve: {
       alias: {
@@ -26,6 +27,25 @@ module.exports = {
         })
       ]
     }
+  },
+  devServer: {
+    open: process.platform === 'darwin',
+    host: '127.0.0.1',
+    port: 9099,
+    https: false,
+    hotOnly: false,
+    proxy: {
+      "/webdiapp": {
+        target: "http://localhost:8080",
+        changeOrigin: true, // 是否改变域名
+        ws: true
+        // pathRewrite: {
+        //   // 路径重写
+        //   "/webdiapp": "" // 这个意思就是以api开头的，定向到哪里, 如果你的后边还有路径的话， 会自动拼接上
+        // }
+      }
+    },
+    before: app => {}
   }
   // chainWebpack: config => {
   //   config.resolve.alias
