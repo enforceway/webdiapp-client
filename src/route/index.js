@@ -1,12 +1,16 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import QuestionaireItem from '@/components/questionaire/QuestionaireItem'
+import Graph from '@/components/mxgraph/graph'
 
 Vue.use(Router)
 
 const routes = [{
   path: '/item/:id',
   component: QuestionaireItem
+}, {
+  path: '/graph',
+  component: Graph
 }]
 
 export default () => {
